@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater);
         setContentView(binding.root);
 
-        /*
+
         binding.starterButton.setOnClickListener {
             val intent = Intent(this, StarterActivity::class.java)
             intent.putExtra("category", "Starter")
@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent);
             displayMsg("Dessert Button");
         }
-        */
+        
     }
 
     override fun onDestroy() {

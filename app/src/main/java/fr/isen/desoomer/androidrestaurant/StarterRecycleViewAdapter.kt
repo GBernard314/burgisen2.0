@@ -12,7 +12,7 @@ class StarterRecycleViewAdapter(private val dataSet: List<String>):
     RecyclerView.Adapter<StarterRecycleViewAdapter.ViewHolder>() {
 
     class ViewHolder(binding: CardBinding) : RecyclerView.ViewHolder(binding.root) {
-        //val title = binding.starterCardTitle
+        val title = binding.starterCardTitle
     }
 
     override fun onCreateViewHolder(
