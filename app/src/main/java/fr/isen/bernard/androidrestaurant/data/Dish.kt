@@ -2,6 +2,7 @@ package fr.isen.bernard.androidrestaurant.data
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.text.DecimalFormat
 
 data class Dish(
     @SerializedName("name_fr") val title: String,
@@ -15,7 +16,9 @@ data class Dish(
     }
 
     fun getFormatedPrice(): String {
-       return prices[0].price + '€'
+        val dec = DecimalFormat("#,###.00")
+        var str = dec.format(prices[0].price.toDouble()).toString()
+       return str + " $"
     }
 
     fun getFirstPicture(): String? {

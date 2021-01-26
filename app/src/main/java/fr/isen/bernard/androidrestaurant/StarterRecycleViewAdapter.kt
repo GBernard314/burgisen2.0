@@ -34,7 +34,8 @@ class StarterRecycleViewAdapter(
 
     override fun onBindViewHolder(holder: StarterRecycleViewAdapter.ViewHolder, position: Int) {
         holder.title.text = dataSet[position].title
-        holder.price.text = dataSet[position].getPrice().toString()
+        holder.price.text = dataSet[position].getFormatedPrice()
+        println(dataSet[position].getFormatedPrice())
         Picasso.get().load(dataSet[position].getFirstPicture()).into(holder.image);
         holder.container.setOnClickListener{
             val intent = Intent(ct, DishDetailActivity::class.java)
