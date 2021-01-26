@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DessertsActivity"
+    tools:context=".StarterActivity"
     android:background="@color/bkBunLight">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryList"
-        android:layout_width="335dp"
-        android:layout_height="462dp"
+        android:id="@+id/starterList"
+        android:layout_width="338dp"
+        android:layout_height="369dp"
         android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.582"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.386" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="173dp"
         android:layout_height="127dp"
-        android:src="@drawable/burger"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/french_fries"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

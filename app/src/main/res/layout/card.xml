@@ -8,23 +8,38 @@
         android:layout_height="match_parent"
         android:padding="8dp">
         <ImageView
-            android:id="@+id/image_view"
+            android:id="@+id/DishImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/french_fries" />
 
         <TextView
-            android:id="@+id/CardTitle"
+            android:id="@+id/DishTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/image_view"
+            android:layout_alignTop="@+id/DishImage"
             android:layout_marginStart="9dp"
             android:layout_marginTop="13dp"
-            android:layout_toEndOf="@id/image_view"
+            android:layout_toEndOf="@id/DishImage"
             android:text="Line 1"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DishPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/DishTitle"
+            android:layout_alignBottom="@+id/DishTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="217dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toEndOf="@+id/DishTitle"
+            android:text="price1" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
