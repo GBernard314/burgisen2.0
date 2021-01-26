@@ -12,7 +12,7 @@ class StarterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStarterBinding.inflate(layoutInflater);
         setContentView(binding.root);
-        binding.starterTitle.text = intent.getStringExtra("category");
+        //binding.EntreeTitle.text = intent.getStringExtra("category");
 
         binding.categoryList.layoutManager = LinearLayoutManager(this)
         binding.categoryList.adapter = StarterRecycleViewAdapter(listOf("Julien","Pierre", "Paul"));

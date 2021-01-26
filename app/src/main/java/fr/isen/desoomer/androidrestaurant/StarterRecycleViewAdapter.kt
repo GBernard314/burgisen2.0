@@ -12,7 +12,7 @@ class StarterRecycleViewAdapter(private val dataSet: List<String>):
     RecyclerView.Adapter<StarterRecycleViewAdapter.ViewHolder>() {
 
     class ViewHolder(binding: CardBinding) : RecyclerView.ViewHolder(binding.root) {
-        val title = binding.starterCardTitle
+        val title = binding.CardTitle
     }
 
     override fun onCreateViewHolder(
@@ -24,7 +24,7 @@ class StarterRecycleViewAdapter(private val dataSet: List<String>):
     }
 
     override fun onBindViewHolder(holder: StarterRecycleViewAdapter.ViewHolder, position: Int) {
-        //holder.title.text = dataSet[position]
+        holder.title.text = dataSet[position]
     }
 
     override fun getItemCount(): Int {

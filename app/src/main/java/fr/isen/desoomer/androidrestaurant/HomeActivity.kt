@@ -21,27 +21,27 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root);
 
 
-        binding.starterButton.setOnClickListener {
+        binding.buttonEntrees.setOnClickListener {
             val intent = Intent(this, StarterActivity::class.java)
             intent.putExtra("category", "Starter")
             startActivity(intent);
             displayMsg("Starter Button");
         }
-
-        binding.dishButton.setOnClickListener {
+        binding.buttonPlats.setOnClickListener {
             val intent = Intent(this, DishActivity::class.java)
             intent.putExtra("category", "Dish")
             startActivity(intent);
             displayMsg("Dish Button");
         }
 
-        binding.dessertButton.setOnClickListener{
+        binding.buttonDesserts.setOnClickListener{
             val intent = Intent(this, DessertActivity::class.java)
             intent.putExtra("category", "Dessert")
             startActivity(intent);
             displayMsg("Dessert Button");
         }
-        
+
+
     }
 
     override fun onDestroy() {
