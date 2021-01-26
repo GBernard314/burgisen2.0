@@ -1,9 +1,9 @@
-package fr.isen.desoomer.androidrestaurant
+package fr.isen.bernard.androidrestaurant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import fr.isen.desoomer.androidrestaurant.databinding.ActivityStarterBinding
+import fr.isen.bernard.androidrestaurant.databinding.ActivityStarterBinding
 
 private lateinit var binding: ActivityStarterBinding
 

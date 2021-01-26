@@ -1,4 +1,4 @@
-package fr.isen.desoomer.androidrestaurant
+package fr.isen.bernard.androidrestaurant
 
 import org.junit.Test
 

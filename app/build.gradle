@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "fr.isen.desoomer.androidrestaurant"
+        applicationId "fr.isen.bernard.androidrestaurant"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

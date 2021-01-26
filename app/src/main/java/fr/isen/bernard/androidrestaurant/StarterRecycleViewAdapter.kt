@@ -1,12 +1,10 @@
-package fr.isen.desoomer.androidrestaurant
+package fr.isen.bernard.androidrestaurant
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.desoomer.androidrestaurant.databinding.ActivityStarterBinding
-import fr.isen.desoomer.androidrestaurant.databinding.CardBinding
+import fr.isen.bernard.androidrestaurant.databinding.ActivityStarterBinding
+import fr.isen.bernard.androidrestaurant.databinding.CardBinding
 
 class StarterRecycleViewAdapter(private val dataSet: List<String>):
     RecyclerView.Adapter<StarterRecycleViewAdapter.ViewHolder>() {
