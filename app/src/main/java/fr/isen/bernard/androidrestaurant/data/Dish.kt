@@ -15,6 +15,12 @@ data class Dish(
         return prices[0].price.toDouble()
     }
 
+    fun getAllPictures() = if (pictures.isNotEmpty() && pictures.any { it.isNotEmpty()}) {
+        pictures.filter { it.isNotEmpty() }
+    } else {
+        null
+    }
+
     fun getFormatedPrice(): String {
         val dec = DecimalFormat("#,###.00")
         var str = dec.format(prices[0].price.toDouble()).toString()

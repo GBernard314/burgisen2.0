@@ -37,7 +37,7 @@ class StarterRecycleViewAdapter(
     override fun onBindViewHolder(holder: StarterRecycleViewAdapter.ViewHolder, position: Int) {
         holder.title.text = dataSet[position].title
         holder.price.text = dataSet[position].getFormatedPrice()
-        println(dataSet[position].getFormatedPrice())
+        //println(dataSet[position].getFormatedPrice())
         //Picasso.get().load(dataSet[position].getFirstPicture()).into(holder.image);
         Picasso.get()
             .load(dataSet[position].getFirstPicture())
@@ -48,8 +48,11 @@ class StarterRecycleViewAdapter(
 
         holder.container.setOnClickListener{
             val intent = Intent(ct, DishDetailActivity::class.java)
-            println("Clicked" + position);
+            println("Clicked " + holder.title.text);
             intent.putExtra("dish_product", holder.title.text as String)
+            val dish = dataSet[position]
+            println("adapter $dish")
+            intent.putExtra("dish", dish)
             ct.startActivity(intent);
         }
     }

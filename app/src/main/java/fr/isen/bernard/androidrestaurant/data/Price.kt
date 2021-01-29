@@ -1,5 +1,13 @@
 package fr.isen.bernard.androidrestaurant.data
 
-class Price {
-    val price: String = "666.66$"
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
+class Price(
+    @SerializedName("price") val price: String
+)  : Serializable {
+    var price2: String = "666"
 }
+
+
+

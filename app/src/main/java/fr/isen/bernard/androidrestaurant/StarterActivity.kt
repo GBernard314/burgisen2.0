@@ -17,7 +17,8 @@ import org.json.JSONObject
 class StarterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStarterBinding.inflate(layoutInflater) 
+        binding = ActivityStarterBinding.inflate(layoutInflater)
+        setTitle("Starters")
         setContentView(binding.root) 
         //binding.EntreeTitle.text = intent.getStringExtra("category") 
 

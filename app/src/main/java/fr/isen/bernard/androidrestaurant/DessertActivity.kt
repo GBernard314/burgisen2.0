@@ -20,6 +20,7 @@ class DessertActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDessertBinding.inflate(layoutInflater)
+        setTitle("Desserts")
         setContentView(binding.root)
         //binding.EntreeTitle.text = intent.getStringExtra("category")
 

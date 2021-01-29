@@ -23,6 +23,8 @@ class DishActivity : AppCompatActivity() {
         //binding.EntreeTitle.text = intent.getStringExtra("category")
 
         binding.dishList.layoutManager = LinearLayoutManager(this)
+
+        setTitle("Dish")
         val reqRet = makeRequest()
         //println(reqRet)
         //binding.starterList.adapter = StarterRecycleViewAdapter(listOf("Julien", "Pierre", makeRequest()),this)//"Paul"))
