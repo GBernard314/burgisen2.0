@@ -6,9 +6,11 @@ import java.text.DecimalFormat
 
 data class Dish(
     @SerializedName("name_fr") val title: String,
+    @SerializedName("id") val id: String,
     @SerializedName("ingredients") val ingredients: List<Ingredients>,
     @SerializedName("images") val pictures: List<String>,
     @SerializedName("prices") val prices: List<Price>
+
 ) : Serializable {
 
     fun getPrice(): Double {
