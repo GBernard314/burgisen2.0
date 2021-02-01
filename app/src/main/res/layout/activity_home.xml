@@ -90,14 +90,4 @@
         app:layout_constraintVertical_bias="0.771"
         app:srcCompat="@drawable/bun_bottom" />
 
-    <ImageView
-        android:id="@+id/cartBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="140dp"
-        app:layout_constraintBottom_toTopOf="@+id/topBun"
-        app:layout_constraintStart_toEndOf="@+id/imageHome"
-        app:srcCompat="@drawable/shopping_basket" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

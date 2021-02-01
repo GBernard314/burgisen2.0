@@ -75,9 +75,9 @@ class DishDetailActivity : AppCompatActivity() {
             val file_text = file.readText()
             val json = Gson().fromJson(file_text, Cart::class.java)
             //if the item is already in the cart
-            for (c in json.items) {
-                if (dish.id == c.dish.id) {
-                    c.qty += qty
+            for (jItem in json.items) {
+                if (dish.id == jItem.dish.id) {
+                    jItem.qty += qty
                 } else {
                     json.items += CartItem(dish, qty)
                 }
