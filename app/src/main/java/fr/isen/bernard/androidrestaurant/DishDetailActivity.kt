@@ -1,10 +1,12 @@
 package fr.isen.bernard.androidrestaurant
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.CartItem
 import fr.isen.bernard.androidrestaurant.data.Dish
 import fr.isen.bernard.androidrestaurant.databinding.ActivityDishDetailBinding
@@ -69,17 +71,23 @@ class DishDetailActivity : AppCompatActivity() {
         val FILE_NAME: String = "/cart.json"
 
         val file = File(cacheDir.absolutePath + FILE_NAME)
-        println(cacheDir.absolutePath + FILE_NAME)
-
         if (file.exists()) {
-            val json = Gson().fromJson(file.readText(), CartItem::class.java)
-            json.qty = qty
-            json.dish = dish
-            val test = GsonBuilder().create().toJson(json)
-            file.writeBytes(test.toByteArray())
+            val file_text = file.readText()
+            val json = Gson().fromJson(file_text, Cart::class.java)
+            //if the item is already in the cart
+            for (c in json.items) {
+                if (dish.id == c.dish.id) {
+                    c.qty += qty
+                } else {
+                    json.items += CartItem(dish, qty)
+                }
+            }
+            val jsonObj = Gson().toJson(json)
+            file.writeText(jsonObj.toString())
         } else {
-            val jsonObj = Gson().toJson(CartItem(dish, qty))
-            file.writeText(jsonObj)
+            val newCart = Cart(listOf(CartItem(dish, qty)))
+            val jsonObj = Gson().toJson(newCart)
+            file.writeText(jsonObj.toString())
         }
 
     }

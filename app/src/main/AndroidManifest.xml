@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartCard" />
+        <activity android:name=".DetailsActivity" />
         <activity android:name=".DessertActivity" />
         <activity android:name=".DishActivity" />
         <activity android:name=".DishDetailActivity" />

@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageHome"
-        android:layout_width="389dp"
-        android:layout_height="183dp"
+        android:layout_width="238dp"
+        android:layout_height="180dp"
         android:layout_marginTop="48dp"
         android:contentDescription="@string/burgerContent"
         app:layout_constraintEnd_toEndOf="@+id/buttonEntrees"
@@ -89,5 +89,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.771"
         app:srcCompat="@drawable/bun_bottom" />
+
+    <ImageView
+        android:id="@+id/cartBtn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="140dp"
+        app:layout_constraintBottom_toTopOf="@+id/topBun"
+        app:layout_constraintStart_toEndOf="@+id/imageHome"
+        app:srcCompat="@drawable/shopping_basket" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

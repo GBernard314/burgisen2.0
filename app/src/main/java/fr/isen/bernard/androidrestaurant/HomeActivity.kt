@@ -40,6 +40,13 @@ class HomeActivity : AppCompatActivity() {
             displayMsg("Dessert Button");
         }
 
+        binding.cartBtn.setOnClickListener{
+            val intent = Intent(this, CartActivity::class.java)
+            //intent.putExtra("category", "Dessert")
+            startActivity(intent);
+            displayMsg("Cart");
+        }
+
 
     }
 

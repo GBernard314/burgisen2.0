@@ -1,11 +1,8 @@
 package fr.isen.bernard.androidrestaurant.data
 
-import android.R.attr.name
-import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import java.io.*
 
-val FILE_NAME: String = "url"
-class Cart {
-    lateinit var items: List<CartItem>;
-
-}
+class Cart(
+    @SerializedName("dishes") var items: List<CartItem>
+): Serializable

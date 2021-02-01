@@ -10,18 +10,20 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import fr.isen.bernard.androidrestaurant.data.Cart
+import fr.isen.bernard.androidrestaurant.data.CartItem
 import fr.isen.bernard.androidrestaurant.data.Dish
-import fr.isen.bernard.androidrestaurant.databinding.CardBinding
+import fr.isen.bernard.androidrestaurant.databinding.CartCardBinding
 
-class StarterRecycleViewAdapter(
-    private val dataSet: List<Dish>,
+class CartRecycleViewAdapter(
+    private val dataSet: List<CartItem>,
     private val ct: Context
 ):
-    RecyclerView.Adapter<StarterRecycleViewAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CartRecycleViewAdapter.ViewHolder>() {
 
-    class ViewHolder(binding: CardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(binding: CartCardBinding) : RecyclerView.ViewHolder(binding.root) {
         val title = binding.DishTitle
-        val price = binding.DishPrice
+        var quantity = binding.dishQty
         val image = binding.DishImage
         val container: CardView = binding.root;
     }
@@ -29,18 +31,18 @@ class StarterRecycleViewAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): StarterRecycleViewAdapter.ViewHolder {
-        val itemBinding = CardBinding.inflate(LayoutInflater.from(parent.context), parent, false);
+    ): CartRecycleViewAdapter.ViewHolder {
+        val itemBinding = CartCardBinding.inflate(LayoutInflater.from(parent.context), parent, false);
         return ViewHolder(itemBinding);
     }
 
-    override fun onBindViewHolder(holder: StarterRecycleViewAdapter.ViewHolder, position: Int) {
-        holder.title.text = dataSet[position].title
-        holder.price.text = dataSet[position].getFormatedPrice()
+    override fun onBindViewHolder(holder: CartRecycleViewAdapter.ViewHolder, position: Int) {
+        holder.title.text = dataSet[position].dish.title
+        holder.quantity.text = dataSet[position].qty.toString()
         //println(dataSet[position].getFormatedPrice())
         //Picasso.get().load(dataSet[position].getFirstPicture()).into(holder.image);
         Picasso.get()
-            .load(dataSet[position].getFirstPicture())
+            .load(dataSet[position].dish.getFirstPicture())
             .error(R.drawable.burger_king_logo!!)
             .placeholder(R.drawable.burger_king_logo)// Image to load when something goes wrong
             .into(holder.image);
@@ -49,7 +51,7 @@ class StarterRecycleViewAdapter(
         holder.container.setOnClickListener{
             val intent = Intent(ct, DishDetailActivity::class.java)
             intent.putExtra("dish_product", holder.title.text as String)
-            val dish = dataSet[position]
+            val dish = dataSet[position].dish
             intent.putExtra("dish", dish)
             ct.startActivity(intent);
         }

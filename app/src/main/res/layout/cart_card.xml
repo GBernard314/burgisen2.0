@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/bkBun"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:id="@+id/DishImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/french_fries" />
+
+        <TextView
+            android:id="@+id/DishTitle"
+            android:layout_width="203dp"
+            android:layout_height="63dp"
+            android:layout_alignTop="@+id/DishPrice"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="-15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/DishImage"
+            android:fontFamily="@font/insanibc"
+            android:text="Line 1"
+            android:textColor="@color/bkBunLight"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dishQty"
+            android:layout_width="74dp"
+            android:layout_height="38dp"
+            android:layout_alignBottom="@+id/DishImage"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="-16dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginBottom="4dp"
+            android:layout_toEndOf="@+id/DishTitle"
+            android:fontFamily="@font/insanibc"
+            android:text="12"
+            android:textAlignment="center"
+            android:textColor="@color/bkBunLight"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/dishQty"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="-50dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginBottom="-46dp"
+            android:layout_toEndOf="@+id/DishTitle"
+            android:fontFamily="@font/insanibc"
+            android:text="Qty. :"
+            android:textAlignment="center"
+            android:textColor="@color/bkBunLight"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

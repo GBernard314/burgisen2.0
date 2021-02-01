@@ -9,8 +9,6 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.bernard.androidrestaurant.data.DishDetailData
 import fr.isen.bernard.androidrestaurant.databinding.ActivityDessertBinding
-import fr.isen.bernard.androidrestaurant.databinding.ActivityDishBinding
-import fr.isen.bernard.androidrestaurant.databinding.ActivityStarterBinding
 import org.json.JSONException
 import org.json.JSONObject
 
