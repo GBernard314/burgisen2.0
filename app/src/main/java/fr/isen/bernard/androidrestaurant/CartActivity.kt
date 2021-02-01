@@ -90,7 +90,6 @@ class CartActivity : AppCompatActivity() {
         val count = getTotalQty(cart)
         val sharedPreferences = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
         sharedPreferences.edit().putInt(CART_COUNT, count).apply()
-        println("tot = " + sharedPreferences.getInt("cart_count", 0))
     }
 
     companion object {

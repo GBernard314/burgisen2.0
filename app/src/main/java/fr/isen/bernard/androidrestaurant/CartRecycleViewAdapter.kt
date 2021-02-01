@@ -12,6 +12,7 @@ import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.CartItem
 import fr.isen.bernard.androidrestaurant.databinding.CartCardBinding
 import java.io.File
+import java.text.DecimalFormat
 
 class CartRecycleViewAdapter(
     private val dataSet: List<CartItem>,
@@ -50,14 +51,23 @@ class CartRecycleViewAdapter(
             .into(holder.image);
 
         holder.add.setOnClickListener{
-            //updateCartItem(holder.id, "Add")
-            holder.quantity.text = (holder.quantity.text.toString().toInt() - 1).toString()
+            updateCartItem(holder.id, "Add")
+            holder.quantity.text = increase(holder.quantity.text.toString().toInt()).toString()
+            if (holder.quantity.text == "0"){
+                ct.startActivity(Intent(ct, CartActivity::class.java))
+            }
         }
         holder.sup.setOnClickListener{
-            //updateCartItem(holder.id, "Sup")
-            holder.quantity.text = (holder.quantity.text.toString().toInt() - 1).toString()
+            updateCartItem(holder.id, "Sup")
+            holder.quantity.text = decrease(holder.quantity.text.toString().toInt()).toString()
+            if (holder.quantity.text == "0"){
+                ct.startActivity(Intent(ct, CartActivity::class.java))
+            }
         }
 
+        //Thread.sleep(1000)
+
+        //ct.startActivity(Intent(ct, CartActivity::class.java));
 
         holder.container.setOnClickListener{
             val intent = Intent(ct, DishDetailActivity::class.java)
@@ -68,31 +78,44 @@ class CartRecycleViewAdapter(
         }
     }
 
+    fun decrease(int: Int): Int{
+        if (int > 0 ){
+            return int -1
+        } else {
+            return int
+        }
+    }
+
+    fun increase(int: Int): Int{
+        return int + 1
+    }
+
     override fun getItemCount(): Int {
         return dataSet.size;
     }
 
-    /*
-    fun updateCartItem(id: String, func: String){
+
+    fun updateCartItem(id: String, value: String){
         val FILE_NAME: String = "/cart.json"
 
-        val file = File(cacheDir.absolutePath + FILE_NAME)
+        val file = File(ct.cacheDir.absolutePath + FILE_NAME)
         if (file.exists()) {
             val file_text = file.readText()
             val json = Gson().fromJson(file_text, Cart::class.java)
-            for (item in json.item){
-                if (item.id == id)
-                    if (func == "Add"){
+            for (item in json.items){
+                if (item.dish.id == id)
+                    if (value == "Add"){
                         item.qty = item.qty + 1
-                    } else if (func == "Sup"){
+                    } else if (value == "Sup"){
                         item.qty = item.qty - 1
                     }
+                if (item.qty <= 0){
+                   json.items -= item
+                }
             }
             val jsonObj = Gson().toJson(json)
             file.writeText(jsonObj.toString())
         }
     }
-
-     */
 
 }
