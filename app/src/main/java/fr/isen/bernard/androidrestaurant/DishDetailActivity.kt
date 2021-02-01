@@ -1,7 +1,10 @@
 package fr.isen.bernard.androidrestaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -16,6 +19,28 @@ import java.text.DecimalFormat
 private lateinit var binding: ActivityDishDetailBinding;
 
 class DishDetailActivity : AppCompatActivity() {
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+        val id = item.getItemId()
+
+        if (id == R.id.menu) {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent);
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dish_detail)
@@ -69,6 +94,7 @@ class DishDetailActivity : AppCompatActivity() {
 
     fun saveToCart(dish: Dish, qty: Int) {
         val FILE_NAME: String = "/cart.json"
+        var alreadyIn = false
 
         val file = File(cacheDir.absolutePath + FILE_NAME)
         if (file.exists()) {
@@ -78,17 +104,44 @@ class DishDetailActivity : AppCompatActivity() {
             for (jItem in json.items) {
                 if (dish.id == jItem.dish.id) {
                     jItem.qty += qty
-                } else {
-                    json.items += CartItem(dish, qty)
+                    alreadyIn = true
                 }
             }
-            val jsonObj = Gson().toJson(json)
+            //if we did not find it
+            //we add it
+            if (alreadyIn == false) {
+                json.items += CartItem(dish, qty)
+            }
+            saveDishCount(json)
+            var jsonObj = Gson().toJson(json)
             file.writeText(jsonObj.toString())
         } else {
             val newCart = Cart(listOf(CartItem(dish, qty)))
+            saveDishCount(newCart)
             val jsonObj = Gson().toJson(newCart)
             file.writeText(jsonObj.toString())
         }
+    }
 
+    fun getTotalQty(cart: Cart): Int{
+        var tot = 0
+        for (item in cart.items){
+            tot += item.qty
+        }
+        return tot
+    }
+
+
+    private fun saveDishCount(cart: Cart) {
+        val count = getTotalQty(cart)
+        val sharedPreferences = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
+        sharedPreferences.edit().putInt(CART_COUNT, count).apply()
+        println("tot = " + sharedPreferences.getInt("cart_count", 0))
+    }
+
+    companion object {
+        const val APP_PREFS = "app_prefs"
+        const val CART_FILE = "user_cart.json"
+        const val CART_COUNT = "cart_count"
     }
 }

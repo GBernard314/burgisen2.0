@@ -2,18 +2,16 @@ package fr.isen.bernard.androidrestaurant
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.icu.number.NumberRangeFormatter.with
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.CartItem
-import fr.isen.bernard.androidrestaurant.data.Dish
 import fr.isen.bernard.androidrestaurant.databinding.CartCardBinding
+import java.io.File
 
 class CartRecycleViewAdapter(
     private val dataSet: List<CartItem>,
@@ -25,7 +23,10 @@ class CartRecycleViewAdapter(
         val title = binding.DishTitle
         var quantity = binding.dishQty
         val image = binding.DishImage
+        val add = binding.add
+        val sup = binding.sup
         val container: CardView = binding.root;
+        var id = ""
     }
 
     override fun onCreateViewHolder(
@@ -39,6 +40,7 @@ class CartRecycleViewAdapter(
     override fun onBindViewHolder(holder: CartRecycleViewAdapter.ViewHolder, position: Int) {
         holder.title.text = dataSet[position].dish.title
         holder.quantity.text = dataSet[position].qty.toString()
+        holder.id = dataSet[position].dish.id
         //println(dataSet[position].getFormatedPrice())
         //Picasso.get().load(dataSet[position].getFirstPicture()).into(holder.image);
         Picasso.get()
@@ -46,6 +48,15 @@ class CartRecycleViewAdapter(
             .error(R.drawable.burger_king_logo!!)
             .placeholder(R.drawable.burger_king_logo)// Image to load when something goes wrong
             .into(holder.image);
+
+        holder.add.setOnClickListener{
+            //updateCartItem(holder.id, "Add")
+            holder.quantity.text = (holder.quantity.text.toString().toInt() - 1).toString()
+        }
+        holder.sup.setOnClickListener{
+            //updateCartItem(holder.id, "Sup")
+            holder.quantity.text = (holder.quantity.text.toString().toInt() - 1).toString()
+        }
 
 
         holder.container.setOnClickListener{
@@ -60,5 +71,28 @@ class CartRecycleViewAdapter(
     override fun getItemCount(): Int {
         return dataSet.size;
     }
+
+    /*
+    fun updateCartItem(id: String, func: String){
+        val FILE_NAME: String = "/cart.json"
+
+        val file = File(cacheDir.absolutePath + FILE_NAME)
+        if (file.exists()) {
+            val file_text = file.readText()
+            val json = Gson().fromJson(file_text, Cart::class.java)
+            for (item in json.item){
+                if (item.id == id)
+                    if (func == "Add"){
+                        item.qty = item.qty + 1
+                    } else if (func == "Sup"){
+                        item.qty = item.qty - 1
+                    }
+            }
+            val jsonObj = Gson().toJson(json)
+            file.writeText(jsonObj.toString())
+        }
+    }
+
+     */
 
 }

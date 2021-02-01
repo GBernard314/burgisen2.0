@@ -20,12 +20,12 @@
         android:id="@+id/imgBasket"
         android:layout_width="211dp"
         android:layout_height="128dp"
-        android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/shopping_basket" />
+        app:layout_constraintVertical_bias="0.071"
+        tools:srcCompat="@drawable/burger" />
 
     <Button
         android:id="@+id/checkOutBtn"
@@ -36,7 +36,7 @@
         android:fontFamily="@font/insanibc"
 
         android:text="Checkout"
-        android:textColor="@color/bkBunLight"
+        android:textColor="@color/white"
         android:textSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewCart" />

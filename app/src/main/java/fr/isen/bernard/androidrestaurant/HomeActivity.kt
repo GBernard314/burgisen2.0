@@ -10,12 +10,12 @@ import fr.isen.bernard.androidrestaurant.databinding.ActivityHomeBinding
 
 private lateinit var binding: ActivityHomeBinding;
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
     public fun displayMsg(str: String) {
         Toast.makeText(this, "Clicked : " + str, Toast.LENGTH_SHORT).show();
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
 
