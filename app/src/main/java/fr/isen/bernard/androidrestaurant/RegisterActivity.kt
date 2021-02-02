@@ -2,12 +2,15 @@ package fr.isen.bernard.androidrestaurant
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.DishDetailData
+import fr.isen.bernard.androidrestaurant.data.RequestApi
 import fr.isen.bernard.androidrestaurant.databinding.ActivityRegisterBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -62,13 +65,15 @@ class RegisterActivity : BaseActivity() {
             url,
             postData,
             {  response ->
-                /*
-                val gson: DishDetailData =
-                    Gson().fromJson(response.toString(), DishDetailData::class.java)
-                gson.data.firstOrNull { it.category == "Entrées" }?.dish?.let {
-                    binding.starterList.adapter = StarterRecycleViewAdapter(it, this);
-                }
-                 */
+                val reqApiGson: RequestApi =
+                    Gson().fromJson(response.toString(), RequestApi::class.java)
+                    if (reqApiGson.code == "200") {
+                        Toast.makeText(this, "Welcome onboard " + reqApiGson.fields.firstname + " " + reqApiGson.fields.lastname, Toast.LENGTH_SHORT).show();
+                        val intent = Intent(this, OrderedActivity::class.java)
+                        intent.putExtra("address", reqApiGson.fields.address)
+                        saveCredentials( pass.toString(), reqApiGson.fields.address)
+                        startActivity(intent)
+                    }
             },
             { error ->
                 onErrorResponse(error)
@@ -94,5 +99,20 @@ class RegisterActivity : BaseActivity() {
         println(body)
         //do stuff with the body...
     }
+
+    private fun saveCredentials(pass: String, addr: String) {
+        val sharedPreferences = getSharedPreferences(RegisterActivity.APP_PREFS, MODE_PRIVATE)
+        sharedPreferences.edit().putString(RegisterActivity.USER_ID, pass).apply()
+        sharedPreferences.edit().putString(RegisterActivity.USER_ADDR, addr).apply()
+    }
+
+    companion object {
+        const val APP_PREFS = "app_prefs"
+        const val USER_ID = "user_id"
+        const val USER_ADDR = "user_addr"
+    }
+
+
+
 
 }

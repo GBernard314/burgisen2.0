@@ -9,7 +9,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.bernard.androidrestaurant.data.RequestApi
-import fr.isen.bernard.androidrestaurant.data.RequestApiFields
 import fr.isen.bernard.androidrestaurant.databinding.ActivitySignInBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -35,8 +34,8 @@ class SignInActivity : BaseActivity() {
         }
     }
     private fun signin() {
-        val pass = binding_sign_in.editTextTextPassword.text
-        val email = binding_sign_in.editTextTextEmailAddress.text
+        val pass = binding_sign_in.editTextTextPassword.text.toString()
+        val email = binding_sign_in.editTextTextEmailAddress.text.toString()
         val queue = Volley.newRequestQueue((this))
         var url = "http://test.api.catering.bluecodegames.com/user/login"
         var postData = JSONObject()
@@ -52,22 +51,18 @@ class SignInActivity : BaseActivity() {
             url,
             postData,
             {  response ->
-                val reqApiFieldsGson: RequestApi =
+                val reqApiGson: RequestApi =
                     Gson().fromJson(response.toString(), RequestApi::class.java)
-                println(reqApiFieldsGson.toString())
-                if (reqApiFieldsGson.code == "200"){
-                    Toast.makeText(this, "Welcome back " + reqApiFieldsGson.fields.firstname + " " + reqApiFieldsGson.fields.lastname, Toast.LENGTH_SHORT).show();
-                    startActivity(Intent(this, OrderedActivity::class.java))
+                println(reqApiGson.toString())
+                if (reqApiGson.code == "200"){
+                    Toast.makeText(this, "Welcome back " + reqApiGson.fields.firstname + " " + reqApiGson.fields.lastname, Toast.LENGTH_SHORT).show();
+                    saveCredentials(pass, reqApiGson.fields.address)
+                    val intent = Intent(this, OrderedActivity::class.java)
+                    intent.putExtra("address", reqApiGson.fields.address)
+                    startActivity(intent)
                 } else {
                     Toast.makeText(this, "Invalid Email / Password combo", Toast.LENGTH_SHORT).show();
                 }
-                /*
-                val gson: DishDetailData =
-                    Gson().fromJson(response.toString(), DishDetailData::class.java)
-                gson.data.firstOrNull { it.category == "Entrées" }?.dish?.let {
-                    binding.starterList.adapter = StarterRecycleViewAdapter(it, this);
-                }
-                 */
             },
             { error ->
                 onErrorResponse(error)
@@ -94,4 +89,16 @@ class SignInActivity : BaseActivity() {
         //do stuff with the body...
     }
 
+
+    private fun saveCredentials(pass: String, addr: String) {
+        val sharedPreferences = getSharedPreferences(RegisterActivity.APP_PREFS, MODE_PRIVATE)
+        sharedPreferences.edit().putString(RegisterActivity.USER_ID, pass).apply()
+        sharedPreferences.edit().putString(RegisterActivity.USER_ADDR, addr).apply()
+    }
+
+    companion object {
+        const val APP_PREFS = "app_prefs"
+        const val USER_ID = "user_id"
+        const val USER_ADDR = "user_addr"
+    }
 }

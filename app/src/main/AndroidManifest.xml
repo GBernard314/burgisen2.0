@@ -17,8 +17,6 @@
         <activity android:name=".CheckOutActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".CartCard" />
-        <activity android:name=".DetailsActivity" />
         <activity android:name=".DessertActivity" />
         <activity android:name=".DishActivity" />
         <activity android:name=".DishDetailActivity" />

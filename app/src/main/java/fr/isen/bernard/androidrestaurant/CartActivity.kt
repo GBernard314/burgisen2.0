@@ -32,6 +32,9 @@ class CartActivity : BaseActivity() {
 
         binding_cart.checkOutBtn.setOnClickListener{
             if (/*is not connected*/true){
+
+                val intent = Intent(this, OrderedActivity::class.java)
+                intent.putExtra("cart", listCart())
                 startActivity(Intent(this, SignInActivity::class.java))
             } else {
                 startActivity(Intent(this, CheckOutActivity::class.java))
