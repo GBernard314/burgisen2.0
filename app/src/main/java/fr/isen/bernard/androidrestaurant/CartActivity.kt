@@ -31,15 +31,10 @@ class CartActivity : BaseActivity() {
         binding_cart.checkOutBtn.text = "Checkout " + getPriceCart()
 
         binding_cart.checkOutBtn.setOnClickListener{
-            if (/*is not connected*/true){
-
-                val intent = Intent(this, OrderedActivity::class.java)
-                intent.putExtra("cart", listCart())
-                startActivity(Intent(this, SignInActivity::class.java))
-            } else {
-                startActivity(Intent(this, CheckOutActivity::class.java))
-            }
-
+            val intent = Intent(this, CheckOutActivity::class.java)
+            val cart: Cart = listCart()
+            intent.putExtra("order", cart)
+            startActivity(intent)
         }
 
 

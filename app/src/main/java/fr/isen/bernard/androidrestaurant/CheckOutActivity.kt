@@ -2,6 +2,7 @@ package fr.isen.bernard.androidrestaurant
 
 import android.content.Intent
 import android.os.Bundle
+import fr.isen.bernard.androidrestaurant.data.Cart
 
 class CheckOutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,10 +10,10 @@ class CheckOutActivity : BaseActivity() {
         setContentView(R.layout.activity_check_out)
 
         if (checkCredentials()){
-
+            val cart: Cart = intent.getSerializableExtra("order") as Cart
             val intent = Intent(this, OrderedActivity::class.java)
-            intent.putExtra("order", intent.getStringExtra("order"))
-            startActivity(Intent(this, OrderedActivity::class.java))
+            intent.putExtra("order", cart)
+            startActivity(intent)
         } else {
             startActivity(Intent(this, SignInActivity::class.java))
         }
