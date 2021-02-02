@@ -8,8 +8,6 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import fr.isen.bernard.androidrestaurant.data.Cart
-import fr.isen.bernard.androidrestaurant.data.DishDetailData
 import fr.isen.bernard.androidrestaurant.data.RequestApi
 import fr.isen.bernard.androidrestaurant.databinding.ActivityRegisterBinding
 import org.json.JSONException

@@ -6,6 +6,6 @@
         android:id="@+id/basket"
         app:showAsAction="always"
         android:title="basket"
-        app:actionLayout="@layout/actionbar_badge_layout"/>
+        app:actionLayout="@layout/actionbar_badge_layout" />
 
 </menu>

@@ -53,9 +53,6 @@ class CartRecycleViewAdapter(
         holder.add.setOnClickListener{
             updateCartItem(holder.id, "Add")
             holder.quantity.text = increase(holder.quantity.text.toString().toInt()).toString()
-            if (holder.quantity.text == "0"){
-                ct.startActivity(Intent(ct, CartActivity::class.java))
-            }
         }
         holder.sup.setOnClickListener{
             updateCartItem(holder.id, "Sup")
@@ -83,7 +80,7 @@ class CartRecycleViewAdapter(
         if (int > 0 ){
             return int -1
         } else {
-            return int
+            return 0
         }
     }
 
@@ -106,18 +103,18 @@ class CartRecycleViewAdapter(
             for (item in json.items){
                 if (item.dish.id == id)
                     if (value == "Add"){
-                        item.qty = item.qty + 1
+                        item.qty = increase(item.qty)
                     } else if (value == "Sup"){
-                        item.qty = item.qty - 1
+                        item.qty = decrease(item.qty)
                     }
                 if (item.qty <= 0){
                    json.items -= item
                 }
             }
+            saveDishCount(Cart(dataSet))
             val jsonObj = Gson().toJson(json)
             file.writeText(jsonObj.toString())
         }
-        saveDishCount(Cart(dataSet))
     }
 
 

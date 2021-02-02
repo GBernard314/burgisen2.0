@@ -8,15 +8,62 @@
     android:background="@color/bkBunLight">
 
     <TextView
-        android:id="@+id/address"
+        android:id="@+id/addText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/insanibc"
+        android:text="this should be the address"
+        android:textColor="@color/bkSalad"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/allgood"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <TextView
+        android:id="@+id/allgood"
+        android:layout_width="256dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="@font/insanibc"
-        android:textColor="@color/bkPatty"/>
+        android:text="It's all good, the goods are being sent to this address : "
+        android:textColor="@color/bkPatty"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dishes"
+        android:layout_width="350dp"
+        android:layout_height="256dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/insanibc"
+        android:text="TextView"
+        android:textColor="@color/bkPatty"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addText" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:fontFamily="@font/insanibc"
+        android:textColor="@color/bkPatty"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="@+id/dishes"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/dishes"
+        app:layout_constraintTop_toBottomOf="@+id/dishes"
+        android:background="@color/bkBun"
+        android:padding="8dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

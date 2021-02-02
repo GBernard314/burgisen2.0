@@ -14,9 +14,9 @@
         android:layout_height="180dp"
         android:layout_marginTop="48dp"
         android:contentDescription="@string/burgerContent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonEntrees"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/buttonEntrees"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/burger_king_logo" />
 
@@ -25,30 +25,30 @@
         style="@android:style/Widget.Button"
         android:layout_width="122dp"
         android:layout_height="49dp"
-        android:layout_marginTop="292dp"
         android:backgroundTint="@color/bkSalad"
         android:fontFamily="@font/insanibc"
         android:text="@string/entreesButton"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <Button
         android:id="@+id/buttonPlats"
         style="@android:style/Widget.Button"
         android:layout_width="122dp"
         android:layout_height="45dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/bkTomato"
         android:fontFamily="@font/insanibc"
         android:text="@string/platsButton"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonEntrees"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonEntrees"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonEntrees" />
 
     <Button
@@ -56,38 +56,39 @@
         style="@android:style/Widget.Button"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/bkPatty"
         android:fontFamily="@font/insanibc"
         android:text="@string/dessertsButton"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonPlats"
-        app:layout_constraintStart_toStartOf="@+id/buttonPlats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPlats" />
 
     <ImageView
-        android:id="@+id/topBun"
-        android:layout_width="152dp"
-        android:layout_height="241dp"
-        android:layout_marginTop="216dp"
-        android:contentDescription="@string/bunBottomDesc"
-        app:layout_constraintEnd_toEndOf="@+id/buttonEntrees"
-        app:layout_constraintStart_toStartOf="@+id/buttonEntrees"
+        android:id="@+id/imageView12"
+        android:layout_width="148dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bun_top" />
+        app:layout_constraintVertical_bias="0.476"
+        app:srcCompat="@drawable/burger_svg_top" />
 
     <ImageView
-        android:id="@+id/bottomBun"
-        android:layout_width="154dp"
-        android:layout_height="222dp"
-        android:contentDescription="@string/bunTopDesc"
+        android:id="@+id/imageView13"
+        android:layout_width="148dp"
+        android:layout_height="73dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonDesserts"
-        app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="@+id/buttonDesserts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895"
-        app:srcCompat="@drawable/bun_bottom" />
+        app:layout_constraintVertical_bias="0.909"
+        app:srcCompat="@drawable/burger_svg_bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

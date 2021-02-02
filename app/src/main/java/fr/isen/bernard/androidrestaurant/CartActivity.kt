@@ -83,7 +83,7 @@ class CartActivity : BaseActivity() {
         return dec.format(price.toDouble()).toString() + " $"
     }
 
-    fun getTotalQty(cart: Cart): Int{
+    private fun getTotalQty(cart: Cart): Int{
         var tot = 0
         for (item in cart.items){
             tot += item.qty
