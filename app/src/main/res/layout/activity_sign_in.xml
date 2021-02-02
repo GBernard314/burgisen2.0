@@ -52,18 +52,19 @@
         android:fontFamily="@font/insanibc" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/toRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/insanibc"
         android:text="No account ? No problem."
         android:textColor="@color/bkBun"
         android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/register"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintStart_toStartOf="@+id/connection"
+        app:layout_constraintTop_toBottomOf="@+id/connection" />
 
     <TextView
         android:id="@+id/password"
@@ -80,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/connection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
