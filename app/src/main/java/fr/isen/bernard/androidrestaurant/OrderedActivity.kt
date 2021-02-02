@@ -43,6 +43,7 @@ class OrderedActivity : BaseActivity() {
         binding_ordered.textView4.text = "Total : " + getFormatedPrice(priceTot)
         pushOrder()
 
+
     }
     private fun pushOrder() {
         val queue = Volley.newRequestQueue((this))
