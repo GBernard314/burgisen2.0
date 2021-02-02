@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -116,6 +117,27 @@ class CartRecycleViewAdapter(
             val jsonObj = Gson().toJson(json)
             file.writeText(jsonObj.toString())
         }
+        saveDishCount(Cart(dataSet))
     }
+
+
+
+    fun getTotalQty(cart: Cart): Int{
+        var tot = 0
+        for (item in cart.items){
+            tot += item.qty
+        }
+        return tot
+    }
+
+    private fun saveDishCount(cart: Cart) {
+        val count = getTotalQty(cart)
+        val sharedPreferences = ct.getSharedPreferences(
+            CartActivity.APP_PREFS,
+            AppCompatActivity.MODE_PRIVATE
+        )
+        sharedPreferences.edit().putInt(CartActivity.CART_COUNT, count).apply()
+    }
+
 
 }

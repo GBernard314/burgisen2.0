@@ -30,6 +30,15 @@ class CartActivity : BaseActivity() {
 
         binding_cart.checkOutBtn.text = "Checkout " + getPriceCart()
 
+        binding_cart.checkOutBtn.setOnClickListener{
+            if (/*is not connected*/true){
+                startActivity(Intent(this, SignInActivity::class.java))
+            } else {
+                startActivity(Intent(this, CheckOutActivity::class.java))
+            }
+
+        }
+
 
     }
 

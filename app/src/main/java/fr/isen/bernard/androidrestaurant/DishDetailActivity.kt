@@ -93,6 +93,7 @@ class DishDetailActivity : BaseActivity() {
             saveDishCount(newCart)
             val jsonObj = Gson().toJson(newCart)
             file.writeText(jsonObj.toString())
+            saveDishCount(newCart)
         }
     }
 
@@ -109,7 +110,6 @@ class DishDetailActivity : BaseActivity() {
         val count = getTotalQty(cart)
         val sharedPreferences = getSharedPreferences(APP_PREFS, MODE_PRIVATE)
         sharedPreferences.edit().putInt(CART_COUNT, count).apply()
-        println("tot = " + sharedPreferences.getInt("cart_count", 0))
     }
 
     companion object {
