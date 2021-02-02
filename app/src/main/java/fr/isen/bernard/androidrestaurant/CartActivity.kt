@@ -1,7 +1,6 @@
 package fr.isen.bernard.androidrestaurant
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -12,7 +11,7 @@ import java.text.DecimalFormat
 
 lateinit var binding_cart: ActivityCartBinding
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding_cart = ActivityCartBinding.inflate(layoutInflater)

@@ -12,7 +12,6 @@ import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.CartItem
 import fr.isen.bernard.androidrestaurant.databinding.CartCardBinding
 import java.io.File
-import java.text.DecimalFormat
 
 class CartRecycleViewAdapter(
     private val dataSet: List<CartItem>,
@@ -65,6 +64,7 @@ class CartRecycleViewAdapter(
             }
         }
 
+        //notifyDataSetChanged()
         //Thread.sleep(1000)
 
         //ct.startActivity(Intent(ct, CartActivity::class.java));

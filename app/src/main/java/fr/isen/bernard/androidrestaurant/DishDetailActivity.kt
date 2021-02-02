@@ -1,14 +1,8 @@
 package fr.isen.bernard.androidrestaurant
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.CartItem
 import fr.isen.bernard.androidrestaurant.data.Dish
@@ -18,28 +12,7 @@ import java.text.DecimalFormat
 
 private lateinit var binding: ActivityDishDetailBinding;
 
-class DishDetailActivity : AppCompatActivity() {
-
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu, menu)
-
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here.
-        val id = item.getItemId()
-
-        if (id == R.id.menu) {
-            val intent = Intent(this, CartActivity::class.java)
-            startActivity(intent);
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-
-    }
+class DishDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

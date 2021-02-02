@@ -17,10 +17,10 @@ import org.json.JSONObject
 
 private lateinit var binding: ActivityDessertBinding
 
-class DessertActivity : AppCompatActivity() {
+class DessertActivity : BaseActivity() {
 
 
-
+/*
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
@@ -40,6 +40,7 @@ class DessertActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
 
     }
+    */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDessertBinding.inflate(layoutInflater)

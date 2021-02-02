@@ -18,9 +18,9 @@ import org.json.JSONObject
 
 private lateinit var binding: ActivityDishBinding
 
-class DishActivity : AppCompatActivity() {
+class DishActivity : BaseActivity() {
 
-
+/*
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
@@ -41,6 +41,8 @@ class DishActivity : AppCompatActivity() {
 
     }
 
+
+ */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDishBinding.inflate(layoutInflater)
