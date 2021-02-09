@@ -45,6 +45,33 @@ class OrderedActivity : BaseActivity() {
 
 
     }
+
+    fun emptyCart() {
+        val FILE_NAME: String = "/cart.json"
+
+        val file = File(cacheDir.absolutePath + FILE_NAME)
+        if (file.exists()) {
+            val newCart = Cart(emptyList())
+            val jsonObj = Gson().toJson(newCart)
+            file.writeText(jsonObj.toString())
+            saveDishCount(newCart)
+        }
+    }
+
+    fun getTotalQty(cart: Cart): Int{
+        var tot = 0
+        for (item in cart.items){
+            tot += item.qty
+        }
+        return tot
+    }
+
+    private fun saveDishCount(cart: Cart) {
+        val count = getTotalQty(cart)
+        val sharedPreferences = getSharedPreferences(CheckOutActivity.APP_PREFS, MODE_PRIVATE)
+        sharedPreferences.edit().putInt(CheckOutActivity.CART_COUNT, count).apply()
+    }
+
     private fun pushOrder() {
         val queue = Volley.newRequestQueue((this))
         var url = "http://test.api.catering.bluecodegames.com/user/order"
@@ -65,17 +92,13 @@ class OrderedActivity : BaseActivity() {
             url,
             postData,
             {  response ->
-                /*
                 val reqApiGson: RequestApi =
                     Gson().fromJson(response.toString(), RequestApi::class.java)
                 if (reqApiGson.code == "200") {
-                    Toast.makeText(this, "Welcome onboard " + reqApiGson.fields.firstname + " " + reqApiGson.fields.lastname, Toast.LENGTH_SHORT).show();
-                    val intent = Intent(this, OrderedActivity::class.java)
-                    intent.putExtra("address", reqApiGson.fields.address)
+                    emptyCart()
+                    val intent = Intent(this, OrderOkActivity::class.java)
                     startActivity(intent)
                 }
-
-                 */
             },
             { error ->
                 onErrorResponse(error)
