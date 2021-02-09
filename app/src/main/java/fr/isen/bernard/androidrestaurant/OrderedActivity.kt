@@ -102,6 +102,7 @@ class OrderedActivity : BaseActivity() {
                 if (reqApiGson.code == "200") {
                     emptyCart()
                     val intent = Intent(this, OrderOkActivity::class.java)
+                    Thread.sleep(5_000)
                     startActivity(intent)
                 }
             },
