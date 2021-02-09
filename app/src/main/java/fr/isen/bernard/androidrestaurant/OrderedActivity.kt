@@ -8,6 +8,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import fr.isen.bernard.androidrestaurant.data.Cart
 import fr.isen.bernard.androidrestaurant.data.RequestApi
 import fr.isen.bernard.androidrestaurant.databinding.ActivityOrderedBinding
@@ -16,6 +17,7 @@ import org.json.JSONObject
 import java.io.File
 import java.io.UnsupportedEncodingException
 import java.text.DecimalFormat
+import kotlin.reflect.typeOf
 
 lateinit var binding_ordered: ActivityOrderedBinding
 
@@ -27,7 +29,7 @@ class OrderedActivity : BaseActivity() {
         setContentView(binding_ordered.root)
 
         //val address = intent.getStringExtra("address")
-        val cart: Cart = intent.getSerializableExtra("order") as Cart
+        val cart = intent.getSerializableExtra("order") as Cart
         val address = readCredentialsAddress()
         println(address)
         binding_ordered.addText.text = address
@@ -76,13 +78,16 @@ class OrderedActivity : BaseActivity() {
         val queue = Volley.newRequestQueue((this))
         var url = "http://test.api.catering.bluecodegames.com/user/order"
         var postData = JSONObject()
+        /*
         val cart: Cart = intent.getSerializableExtra("order") as Cart
-        val idUser = readCredentialsId()
-        println(serializeCart())
+        val idUser: String = "\"" + readCredentialsId() + "\""
+        val cartTTT :
+         */
+        val the_cart = GsonBuilder().create().toJson(intent.getSerializableExtra("order") as Cart)//String = "\"" + serializeCart().toString().replace("\"", "'") + "\""
         try {
             postData.put("id_shop", "1")
-                .put("id_user", idUser)
-                .put("msg", serializeCart())
+                .put("id_user", getSharedPreferences(DishDetailActivity.APP_PREFS, MODE_PRIVATE).getString("user_id", "0"))
+                .put("msg", the_cart)
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -149,11 +154,7 @@ class OrderedActivity : BaseActivity() {
         var newCart = Cart(emptyList())
         if (file.exists()) {
             val file_text = file.readText()
-            val json = Gson().fromJson(file_text, Cart::class.java)
-            newCart = json
-            var str: String = file_text
-            str = file_text.replace("\"", "\\\"")
-            return "\"" + str + "\""
+            return file_text
         }
 
         binding_cart.recyclerViewCart.adapter = CartRecycleViewAdapter(newCart.items, this);
@@ -168,3 +169,4 @@ class OrderedActivity : BaseActivity() {
     }
 
 }
+

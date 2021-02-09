@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.bernard.androidrestaurant.data.RequestApi
+import fr.isen.bernard.androidrestaurant.data.RequestApiLogin
 import fr.isen.bernard.androidrestaurant.databinding.ActivitySignInBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -51,13 +52,13 @@ class SignInActivity : BaseActivity() {
             url,
             postData,
             {  response ->
-                val reqApiGson: RequestApi =
-                    Gson().fromJson(response.toString(), RequestApi::class.java)
+                val reqApiGson: RequestApiLogin =
+                    Gson().fromJson(response.toString(), RequestApiLogin::class.java)
                 println(reqApiGson.toString())
                 if (reqApiGson.code == "200"){
                     Toast.makeText(this, "Welcome back " + reqApiGson.fields.firstname + " " + reqApiGson.fields.lastname, Toast.LENGTH_SHORT).show();
-                    saveCredentials(pass, reqApiGson.fields.address)
-                    val intent = Intent(this, OrderedActivity::class.java)
+                    saveCredentials(reqApiGson.fields.id.toString(), reqApiGson.fields.address.toString())
+                    val intent = Intent(this, CartActivity::class.java)
                     intent.putExtra("address", reqApiGson.fields.address)
                     startActivity(intent)
                 } else {
@@ -90,9 +91,9 @@ class SignInActivity : BaseActivity() {
     }
 
 
-    private fun saveCredentials(pass: String, addr: String) {
+    private fun saveCredentials(id: String, addr: String) {
         val sharedPreferences = getSharedPreferences(RegisterActivity.APP_PREFS, MODE_PRIVATE)
-        sharedPreferences.edit().putString(RegisterActivity.USER_ID, pass).apply()
+        sharedPreferences.edit().putString(RegisterActivity.USER_ID, id).apply()
         sharedPreferences.edit().putString(RegisterActivity.USER_ADDR, addr).apply()
     }
 

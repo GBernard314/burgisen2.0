@@ -2,6 +2,7 @@ package fr.isen.bernard.androidrestaurant
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.VolleyError
@@ -9,6 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.bernard.androidrestaurant.data.RequestApi
+import fr.isen.bernard.androidrestaurant.data.RequestApiLogin
 import fr.isen.bernard.androidrestaurant.databinding.ActivityRegisterBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -28,13 +30,13 @@ class RegisterActivity : BaseActivity() {
 
         binding_register.toSignin.setOnClickListener {
             //todo redirect if the account exists
-            startActivity(Intent(this, SignInActivity::class.java))
+            startActivity(Intent(this, CartActivity::class.java))
         }
 
         binding_register.register.setOnClickListener {
             //todo redirect if the account exists
             register()
-            startActivity(Intent(this, OrderedActivity::class.java))
+            startActivity(Intent(this, CartActivity::class.java))
         }
     }
     private fun register() {
@@ -63,13 +65,14 @@ class RegisterActivity : BaseActivity() {
             url,
             postData,
             {  response ->
-                val reqApiGson: RequestApi =
-                    Gson().fromJson(response.toString(), RequestApi::class.java)
+                val reqApiGson: RequestApiLogin =
+                    Gson().fromJson(response.toString(), RequestApiLogin::class.java)
                     if (reqApiGson.code == "200") {
                         Toast.makeText(this, "Welcome onboard " + reqApiGson.fields.firstname + " " + reqApiGson.fields.lastname, Toast.LENGTH_SHORT).show();
                         val intent = Intent(this, OrderedActivity::class.java)
                         intent.putExtra("address", reqApiGson.fields.address)
-                        saveCredentials( pass.toString(), reqApiGson.fields.address)
+                        saveCredentials( reqApiGson.fields.id.toString(), reqApiGson.fields.address.toString())
+                        Log.d("fields id", "id = " + reqApiGson.fields.id)
                         startActivity(intent)
                     }
             },
@@ -98,9 +101,9 @@ class RegisterActivity : BaseActivity() {
         //do stuff with the body...
     }
 
-    private fun saveCredentials(pass: String, addr: String) {
+    private fun saveCredentials(id: String, addr: String) {
         val sharedPreferences = getSharedPreferences(RegisterActivity.APP_PREFS, MODE_PRIVATE)
-        sharedPreferences.edit().putString(RegisterActivity.USER_ID, pass).apply()
+        sharedPreferences.edit().putString(RegisterActivity.USER_ID, id).apply()
         sharedPreferences.edit().putString(RegisterActivity.USER_ADDR, addr).apply()
     }
 
